@@ -1,37 +1,30 @@
-def soma(a, b):
-    return a + b
+def calcular_imc(peso, altura):
+    return peso / (altura ** 2)
 
-def subtracao(a, b):
-    return a - b
+while True:
+    try:
+        altura = float(input("Digite sua altura em metros: "))
 
-def multiplicacao(a, b):
-    return a * b
+        if altura <= 0:
+            continue
 
-def divisao(a, b):
-    if b != 0:
-        return a / b
-    else:
-        return "Não é possível dividir por zero."
+        peso = float(input("Digite seu peso em quilogramas: "))
 
+        if peso <= 0:
+            continue
 
-print("Operações disponíveis:")
-print("1. Soma")
-print("2. Subtração")
-print("3. Multiplicação")
-print("4. Divisão")
+        imc = calcular_imc(peso, altura)
+        imc_arredondado = round(imc, 2)
+        print(f"Seu IMC é: {imc_arredondado}")
 
-opcao = int(input("Escolha a operação (1/2/3/4): "))
-num1 = float(input("Digite o primeiro número: "))
-num2 = float(input("Digite o segundo número: "))
-
-
-if opcao == 1:
-    print("Resultado da soma:", soma(num1, num2))
-elif opcao == 2:
-    print("Resultado da subtração:", subtracao(num1, num2))
-elif opcao == 3:
-    print("Resultado da multiplicação:", multiplicacao(num1, num2))
-elif opcao == 4:
-    print("Resultado da divisão:", divisao(num1, num2))
-else:
-    print("Opção inválida.")
+        if imc_arredondado <= 18.4:
+            print("Você está abaixo do peso.")
+        elif imc_arredondado <= 24.9:
+            print("Seu peso está normal.")
+        elif imc_arredondado <= 29.9:
+            print("Você está acima do peso.")
+        elif imc_arredondado <= 34.9:
+            print("Você está com obesidade grau I.")
+       
+    except ValueError:
+        print("Por favor, insira apenas números.")
